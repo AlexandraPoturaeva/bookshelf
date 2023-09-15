@@ -23,6 +23,7 @@ def get_book_details(book: Book | None) -> Dict | None:
         }
         return book_details
 
+    return None
 
 def all_books_view(request: HttpRequest) -> HttpResponse:
     books = Book.objects.all()
