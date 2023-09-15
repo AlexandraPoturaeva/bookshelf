@@ -6,8 +6,8 @@
 </head>
 <body>
 <h2>Книги</h2>
-<table>
-    <thead>
+    <table>
+        <thead>
         <tr>
             <th>Название</th>
             <th>Автор</th>
@@ -15,16 +15,16 @@
             <th>Тираж</th>
             <th>Описание</th>
         </tr>
-    </thead>
-    {% for book in books %}
-    <tr>
-        <td>{{ book.title }}</td>
-        <td>{{ book.author_full_name }}</td>
-        <td>{{ book.year_of_publishing }}</td>
-        <td>{{ book.copies_printed }}</td>
-        <td>{{ book.short_description }}</td>
-    </tr>
-    {% endfor %}
-</table>
+        </thead>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author_full_name }}</td>
+            <td>{{ book.year_of_publishing }}</td>
+            <td>{{ book.copies_printed }}</td>
+            <td>{{ book.short_description }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>
