@@ -25,6 +25,7 @@ def get_book_details(book: Book | None) -> Dict | None:
 
     return None
 
+
 def all_books_view(request: HttpRequest) -> HttpResponse:
     books = Book.objects.all()
     return render(request, 'all_books.html', context={'books': books},)
