@@ -8,7 +8,7 @@ def all_books_view(request: HttpRequest) -> HttpResponse:
     return render(request, 'all_books.html', context={'books': books})
 
 
-def book_view(request: HttpRequest, book_id: int) -> HttpResponse | HttpResponseNotFound:
+def one_book_view(request: HttpRequest, book_id: int) -> HttpResponse | HttpResponseNotFound:
     book = get_book_by_id(book_id)
 
     if not book:

@@ -26,15 +26,15 @@ class BookViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'all_books.html')
 
-    def test__book_view__url_exists_at_desired_location_by_id(self):
+    def test__one_book_view__url_exists_at_desired_location_by_id(self):
         response = self.client.get('/books/3/')
         self.assertEqual(response.status_code, 200)
 
-    def test__book_view__not_found_if_id_doesnt_exist(self):
+    def test__one_book_view__not_found_if_id_doesnt_exist(self):
         response = self.client.get('/books/7/')
         self.assertEqual(response.status_code, 404)
 
-    def test__book_view__uses_correct_template(self):
+    def test__one_book_view__uses_correct_template(self):
         response = self.client.get(reverse('one_book', kwargs={'book_id': 3}))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'book.html')
