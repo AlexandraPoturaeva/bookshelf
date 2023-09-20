@@ -11,7 +11,7 @@ class Book(models.Model):
     def __str__(self) -> str:
         return f"{self.title} ({self.author_full_name})"
 
-    def get_book_details(self) -> dict[str, int | str]:
+    def to_json(self) -> dict[str, int | str]:
         return {
             "id": self.pk,
             "title": self.title,

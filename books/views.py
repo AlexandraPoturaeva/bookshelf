@@ -34,6 +34,6 @@ def one_book_details_handler(request: HttpRequest, book_id: int) -> HttpResponse
         return HttpResponseNotFound()
 
     return JsonResponse(
-        book.get_book_details(),
+        book.to_json(),
         json_dumps_params={'ensure_ascii': False}
     )
