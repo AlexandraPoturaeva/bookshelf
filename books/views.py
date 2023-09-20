@@ -19,7 +19,7 @@ def one_book_view(request: HttpRequest, book_id: int) -> HttpResponse | HttpResp
 
 def all_books_details_handler(request: HttpRequest) -> JsonResponse:
     books = Book.objects.all()
-    data = [book.get_book_details() for book in books]
+    data = [book.to_json() for book in books]
 
     return JsonResponse(
         {'all_books_details': data},
