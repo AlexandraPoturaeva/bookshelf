@@ -1,4 +1,14 @@
 from django.db import models
+from typing import TypedDict
+
+
+class BookJson(TypedDict):
+    id: int
+    title: str
+    author_full_name: str
+    year_of_publishing: int
+    copies_printed: int
+    short_description: str
 
 
 class Book(models.Model):
@@ -10,3 +20,20 @@ class Book(models.Model):
 
     def __str__(self) -> str:
         return f"{self.title} ({self.author_full_name})"
+
+    def to_json(self) -> BookJson:
+        return {
+            "id": self.pk,
+            "title": self.title,
+            "author_full_name": self.author_full_name,
+            "year_of_publishing": self.year_of_publishing,
+            "copies_printed": self.copies_printed,
+            "short_description": self.short_description,
+        }
+
+
+def get_book_by_id(book_id: int) -> Book | None:
+    try:
+        return Book.objects.get(id=book_id)
+    except Book.DoesNotExist:
+        return None
