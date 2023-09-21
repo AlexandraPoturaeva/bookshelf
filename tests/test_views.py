@@ -39,6 +39,13 @@ class BookViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'book.html')
 
+    def test__all_book_details_handler__returns_correct_json(self):
+        books = Book.objects.all()
+        data = [book.to_json() for book in books]
+        expected_json = {'all_books_details': data}
+        response = self.client.get(f'/api/books/')
+        self.assertEqual(response.json(), expected_json)
+
     def test__one_book_details_handler__returns_correct_json(self):
         book_id = 2
         expected_json = {
@@ -51,3 +58,7 @@ class BookViewTest(TestCase):
         }
         response = self.client.get(f'/api/books/{book_id}/')
         self.assertEqual(response.json(), expected_json)
+
+    def test__one_book_details_handler__not_found_if_id_doesnt_exist(self):
+        response = self.client.get('/api/books/7/')
+        self.assertEqual(response.status_code, 404)
